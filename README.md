@@ -1,5 +1,3 @@
-# 招商国科船舶项目
-
 ## Vite + Vue 3 + Typescript + Pinia
 
 使用 `Vite` + `Vue3` 搭建的项目， 添加了 `Typescript` 支持， 由于项目比较简单，暂未使用 `Vue-Router`。
