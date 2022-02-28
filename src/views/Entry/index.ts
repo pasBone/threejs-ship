@@ -25,7 +25,7 @@ export default class Entry {
       0.1,
       10000000
     );
-    camera.position.set(100, 100, 100);
+    camera.position.set(20, 20, 20);
     camera.lookAt(new Vector3(0, 0, 0));
     camera.up = new Vector3(0, 1, 0);
 

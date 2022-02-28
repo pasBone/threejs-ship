@@ -1,6 +1,4 @@
-import { ModelUserData } from "@/types";
-import { getCenter, getSize } from "@/utils/three.utils";
-import { BoxGeometry, MeshStandardMaterial, Mesh } from "three";
+import { SHIP_SCALE } from "@/const";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const loader = new GLTFLoader();
@@ -8,10 +6,9 @@ const loader = new GLTFLoader();
 /** 加载 ship 模型 */
 export const getShipModel = () => {
   return gltfLoaderAsync('models/ship-oil/scene-2.gltf').then(gltf => {
-    const scale = 2;
     gltf.scene.name = 'ship';
-    gltf.scene.userData.scale = scale;
-    gltf.scene.scale.set(scale, scale, scale);
+    gltf.scene.userData.scale = SHIP_SCALE;
+    gltf.scene.scale.set(SHIP_SCALE, SHIP_SCALE, SHIP_SCALE);
     return gltf;
   });
 };
