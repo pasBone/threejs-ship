@@ -1,0 +1,207 @@
+{
+  "materials": [
+    {
+      "name": "19_-_Default_alpha",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "baseColorFactor": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metallicFactor": 0.099999994,
+        "roughnessFactor": 1
+      },
+      "alphaMode": "BLEND"
+    }
+  ],
+  "images": [
+    {
+      "uri": "I38OXTD8YO02R920CQWZOEZYCRWP6D8ZC.png"
+    }
+  ],
+  "textures": [
+    {
+      "name": "bule.png",
+      "sampler": 0,
+      "source": 0
+    }
+  ],
+  "meshes": [
+    {
+      "name": "船箱子",
+      "primitives": [
+        {
+          "material": 0,
+          "mode": 4,
+          "indices": 0,
+          "attributes": {
+            "NORMAL": 2,
+            "POSITION": 1,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4
+          }
+        }
+      ]
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 2031,
+      "uri": "OW0SP9UQION7OWJPVDHY0EF8CPZPSEH88.bin"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "target": 34963,
+      "byteLength": 96,
+      "byteOffset": 0
+    },
+    {
+      "buffer": 0,
+      "target": 34962,
+      "byteLength": 144,
+      "byteOffset": 216
+    },
+    {
+      "buffer": 0,
+      "target": 34962,
+      "byteLength": 432,
+      "byteOffset": 360
+    },
+    {
+      "buffer": 0,
+      "target": 34962,
+      "byteLength": 96,
+      "byteOffset": 744
+    },
+    {
+      "buffer": 0,
+      "target": 34962,
+      "byteLength": 288,
+      "byteOffset": 840
+    }
+  ],
+  "accessors": [
+    {
+      "componentType": 5123,
+      "type": "SCALAR",
+      "bufferView": 0,
+      "byteOffset": 0,
+      "byteType": 1199,
+      "count": 48
+    },
+    {
+      "componentType": 5126,
+      "type": "VEC3",
+      "bufferView": 1,
+      "byteOffset": 0,
+      "byteType": 1647,
+      "count": 12,
+      "min": [
+        -6.05960845947266,
+        -1.21613693237305,
+        -1.33865928649902
+      ],
+      "max": [
+        6.05962371826172,
+        1.21613693237305,
+        1.33866119384766
+      ]
+    },
+    {
+      "componentType": 5126,
+      "type": "VEC3",
+      "bufferView": 2,
+      "byteOffset": 0,
+      "byteType": 1349,
+      "count": 36
+    },
+    {
+      "componentType": 5126,
+      "type": "VEC2",
+      "bufferView": 3,
+      "byteOffset": 0,
+      "byteType": 547,
+      "count": 12
+    },
+    {
+      "componentType": 5126,
+      "type": "VEC2",
+      "bufferView": 4,
+      "byteOffset": 0,
+      "byteType": 1737,
+      "count": 36
+    }
+  ],
+  "nodes": [
+    {
+      "name": "RootNode",
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "children": [
+        1
+      ]
+    },
+    {
+      "name": "船箱子",
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        -0.70710676908493,
+        0.0,
+        0.0,
+        0.70710676908493
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "mesh": 0,
+      "extensions": {
+        "effects": {
+          "glowInset": true
+        }
+      }
+    }
+  ],
+  "asset": {
+    "generator": "FBX2glTF",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Root Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "samplers": [
+    {}
+  ]
+}

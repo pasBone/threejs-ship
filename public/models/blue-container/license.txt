@@ -1,0 +1,11 @@
+Model Information:
+* title:	Container
+* source:	https://sketchfab.com/3d-models/container-866c91f06c394b1189d42bb479378cd6
+* author:	Victor Hernandez (https://sketchfab.com/Victor.Hernandez)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Container" (https://sketchfab.com/3d-models/container-866c91f06c394b1189d42bb479378cd6) by Victor Hernandez (https://sketchfab.com/Victor.Hernandez) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

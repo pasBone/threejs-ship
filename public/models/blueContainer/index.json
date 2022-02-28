@@ -1,0 +1,23 @@
+{
+  "sourceFile": "D:\\work\\f9450989db3d47a3a1c77e22fe8e6978_999_转换中\\MAX\\21000210002100021000210002016JM02.maxbk0.max",
+  "gltfFiles": [
+    "GEUC51ZNM717QOT82OW812QP0TT16TFD8.gltf"
+  ],
+  "texFiles": {
+    "OW0SP9UQION7OWJPVDHY0EF8CPZPSEH88": ".bin",
+    "I38OXTD8YO02R920CQWZOEZYCRWP6D8ZC": "bule.png"
+  },
+  "size": [
+    12.1192,
+    2.43227,
+    2.67732
+  ],
+  "faces": 12,
+  "verts": 20,
+  "nodes": 1,
+  "createTime": "2019-05-29 13:15:31",
+  "author": "1854",
+  "computer": "DESKTOP-MEOUSL4",
+  "max": "#(22000, 55, 0, 22, 0, 0, 757, 2020, \"\")",
+  "version": "2.1"
+}
