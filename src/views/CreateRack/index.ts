@@ -1,4 +1,5 @@
-import { Group } from "three";
+import { Group, Vector3, } from "three";
+import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
 import { app } from "@/App";
 import { getCenter, getSize } from "@/utils/three.utils";
 import { blueContainer, rack } from "@/views/LoadModel";
@@ -45,7 +46,7 @@ export async function createRacks () {
   rackSize = getSize(rackModel);
   rackCenter = getCenter(rackModel);
   let sum = 0;
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 14; i++) {
     const rack = rackModel.clone();
     sum += CONTAINER_SPACEING_Z_ODD + CONTAINER_SPACEING_Z_EVEN;
     rack.position.set(
@@ -54,6 +55,7 @@ export async function createRacks () {
       i * (containerSize.z * 2) + sum
     );
     racksGroup.add(rack);
+    racksGroup.add(createBaysMarker(new Vector3(0, 0, i * (containerSize.z * 2) + sum)).clone());
   }
 
   racksGroup.position.set(
@@ -62,4 +64,17 @@ export async function createRacks () {
     -((shipBoardSize.z / 2) - (rackSize.z / 2) - shipBoardCenter.z + rackCenter.z),
   );
   return racksGroup;
+}
+
+function createBaysMarker (position: Vector3) {
+  const markerDom = document.createElement("div");
+  // markerDom.innerHTML = `<div style="position:absolute">haha</div>`;
+  markerDom.className = 'label';
+  markerDom.textContent = 'Earth';
+  markerDom.style.marginTop = '-1em';
+  const marker = new CSS2DObject(markerDom);
+  marker.position.set(0, 20, 0);
+  marker.layers.set( 0 );
+  document.body.appendChild( markerDom );
+  return marker;
 }

@@ -29,8 +29,8 @@ export async function createContainers () {
   let sum = 0;
   for (let i = 0; i < 12; i++) {
     for (let j = 0; j < 5; j++) {
-      sum = 0
-      for (let k = 0; k < 30; k++) {
+      sum = 0;
+      for (let k = 0; k < 26; k++) {
         const container = blueContainer.scene.clone();
         sum += k % 2 == 0 ? CONTAINER_SPACEING_Z_ODD : CONTAINER_SPACEING_Z_EVEN;  // 0.1-固定间距， 0.4-船架之间的间距
         container.position.set(
@@ -38,7 +38,7 @@ export async function createContainers () {
           (containeSize.y + 0.1) * j,
           (containeSize.z * k) + sum,
         );
-        containersGroup.add(container);
+        // containersGroup.add(container);
       }
     }
   }
