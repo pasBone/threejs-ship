@@ -1,11 +1,10 @@
 import "@/style/app.scss";
 import { defineComponent } from "vue";
-import { useStore } from "@/store";
 import Entry from "@/views/Entry";
 import { Lights } from "@/views/Lights";
 import { createContainers } from "@/views/CreateContainers";
 import { ElLoading } from 'element-plus';
-import { createRacks } from "./views/CreateRack";
+import { createBaysMarker, createRacks } from "./views/CreateRack";
 import { ship } from "@/views/LoadModel";
 import 'element-plus/theme-chalk/el-loading.css';
 
@@ -39,10 +38,13 @@ async function init3D () {
   app.add(...Lights);
 
   /** 添加 ship 对象 */
-  app.add((await ship).scene);
+  app.add(ship.scene);
 
   /** 添加船架组*/
   app.add(await createRacks());
+
+  /** 添加贝位 marker */
+  app.add(createBaysMarker());
 
   /** 添加蓝色集装箱组 */
   app.add(await createContainers());

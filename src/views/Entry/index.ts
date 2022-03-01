@@ -1,7 +1,9 @@
-import { Scene, PerspectiveCamera, WebGLRenderer, Vector3, Object3D } from "three";
+
+import { Scene, PerspectiveCamera, WebGLRenderer, Vector3, Object3D, Raycaster, Vector2 } from "three";
+import { Interaction } from '@/vendor/three.interaction';
 import Stats from 'three/examples/jsm/libs/stats.module';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
+import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 export default class Entry {
 
   /** 场景 */
@@ -37,6 +39,16 @@ export default class Entry {
     renderer.setClearColor(0xeeeeee);
     renderer.shadowMap.enabled = true;
 
+    // 设置 css2d 渲染器
+    const css2DRenderer = new CSS2DRenderer();
+    css2DRenderer.setSize(window.innerWidth, window.innerHeight);
+    css2DRenderer.domElement.style.position = 'absolute';
+    css2DRenderer.domElement.style.top = '0px';
+    css2DRenderer.domElement.style.pointerEvents = 'none';
+
+    // 初始化事件管理器
+    const interaction = new Interaction(renderer, scene, camera);
+
     this.renderer = renderer;
     this.camera = camera;
     this.scene = scene;
@@ -44,13 +56,16 @@ export default class Entry {
     // 添加性能监视器dom及渲染器dom
     const { stats, statsDom } = this.createStats();
     const orbitControls = this.createOrbitControls();
+
     dom.appendChild(renderer.domElement);
     dom.appendChild(statsDom);
+    dom.appendChild(css2DRenderer.domElement);
 
     // 定时刷新界面
     (function renderFrame () {
       orbitControls.update();
       renderer.render(scene, camera);
+      css2DRenderer.render(scene, camera);
       stats.update();
       requestAnimationFrame(renderFrame);
     })();
@@ -62,6 +77,8 @@ export default class Entry {
     orbitControls.addEventListener("change", () => {
       this.renderer.render(this.scene, this.camera);
     });
+    orbitControls.minDistance = 5;
+    orbitControls.maxDistance = 100;
     return orbitControls;
   }
 

@@ -4,6 +4,7 @@ import { app } from "@/App";
 import { getCenter, getSize } from "@/utils/three.utils";
 import { blueContainer, rack } from "@/views/LoadModel";
 import { CONTAINER_SPACEING_Z_EVEN, CONTAINER_SPACEING_Z_ODD } from "@/const";
+import BayInfo from "@/views/Ui/bayInfo.vue";
 
 export async function createRacks () {
 
@@ -49,13 +50,13 @@ export async function createRacks () {
   for (let i = 0; i < 14; i++) {
     const rack = rackModel.clone();
     sum += CONTAINER_SPACEING_Z_ODD + CONTAINER_SPACEING_Z_EVEN;
+    // 设置船架坐标
     rack.position.set(
       0,
       0,
       i * (containerSize.z * 2) + sum
     );
     racksGroup.add(rack);
-    racksGroup.add(createBaysMarker(new Vector3(0, 0, i * (containerSize.z * 2) + sum)).clone());
   }
 
   racksGroup.position.set(
@@ -66,15 +67,28 @@ export async function createRacks () {
   return racksGroup;
 }
 
-function createBaysMarker (position: Vector3) {
-  const markerDom = document.createElement("div");
-  // markerDom.innerHTML = `<div style="position:absolute">haha</div>`;
-  markerDom.className = 'label';
-  markerDom.textContent = 'Earth';
-  markerDom.style.marginTop = '-1em';
-  const marker = new CSS2DObject(markerDom);
-  marker.position.set(0, 20, 0);
-  marker.layers.set( 0 );
-  document.body.appendChild( markerDom );
-  return marker;
+export function createBaysMarker () {
+
+  // bayMarker组
+  const markersGroup = new Group();
+  markersGroup.name = "markersGroup";
+  const rackGroup = app.scene.getObjectByName('rackGroup')!;
+  rackGroup.children.forEach((item, index) => {
+    if (index > 0) {
+      const markerDom = document.createElement("div");
+      const bayInfo = createApp(BayInfo, { bayNo: index * 2 });
+      bayInfo.mount(markerDom);
+      const marker = new CSS2DObject(markerDom).clone();
+      marker.name = "bayMarker";
+      marker.position.set(
+        0,
+        17,
+        item.position.z
+      );
+      marker.layers.set(0);
+      markersGroup.add(marker);
+    }
+  });
+  markersGroup.position.z = rackGroup.position.z - 3;
+  return markersGroup;
 }
