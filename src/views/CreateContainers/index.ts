@@ -1,4 +1,4 @@
-import { Group } from "three";
+import { Color, Group } from "three";
 import { app } from "@/App";
 import { getCenter, getSize } from "@/utils/three.utils";
 import { blueContainer } from "@/views/LoadModel";
@@ -37,11 +37,12 @@ export async function createContainers () {
           (containeSize.z * k) + sum,
         );
         containersGroup.add(container);
-       
         container.cursor = 'pointer';
-        container.on('click', function (ev: any) {
-          console.log(ev);
+        container.on('click', ({ target }) => {
+          app.outlinePass.selectedObjects = [target]
+          app.outlinePass.visibleEdgeColor = new Color('#ff9900');
         });
+
       }
     }
   }

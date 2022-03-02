@@ -1,3 +1,6 @@
+import { InteractionData } from "./InteractionData"
+import { Object3D } from "three"
+
 /**
  * Event class that mimics native DOM events.
  *
@@ -15,7 +18,7 @@ declare class InteractionEvent {
      *
      * @member {Object3D}
      */
-    target: any;
+    target: Object3D;
     /**
      * The object whose event listener’s callback is currently being invoked.
      *
@@ -33,7 +36,7 @@ declare class InteractionEvent {
      *
      * @member {InteractionData}
      */
-    data: any;
+    data: InteractionData;
     /**
      * ray caster detial from 3d-mesh
      *

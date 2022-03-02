@@ -1,3 +1,4 @@
+import InteractionEvent from "./InteractionEvent"
 export default Interaction;
 /**
  * The interaction manager deals with mouse, touch and pointer events. Any DisplayObject can be interactive
@@ -56,11 +57,11 @@ import InteractionManager from "./InteractionManager";
 
 declare module "three" {
     export interface Object3D {
-        on (
-            eventType: string,
-            callback: (event: any) => void
+        on<K extends keyof DocumentEventMap> (
+            type: K,
+            listener: (ev: InteractionEvent) => void
         ): void;
-        cursor: cursorStyles,
+        cursor: string;
         entity?: Entity;
         findOwningEntity: () => Entity | "world";
     }
