@@ -1,10 +1,12 @@
-import { Color, Group } from "three";
+import { Color, Group, Object3D } from "three";
 import { app } from "@/App";
-import { getCenter, getSize } from "@/utils/three.utils";
+import { getCenter, getSize, setOutline } from "@/utils/three.utils";
 import { blueContainer } from "@/views/LoadModel";
 import { CONTAINER_SPACEING_Z_EVEN, CONTAINER_SPACEING_Z_ODD } from "@/const";
-export async function createContainers () {
+import { CSS2DObject } from "three/examples/jsm/renderers/CSS2DRenderer";
+import ContainerInfo from "@/views/Ui/containerInfo/index.vue";
 
+export async function createContainers () {
   // 集装箱组
   const containersGroup = new Group();
   containersGroup.name = "containersGroup";
@@ -36,13 +38,13 @@ export async function createContainers () {
           (containeSize.y + 0.1) * j,
           (containeSize.z * k) + sum,
         );
+        container.userData.index = [i, j, k];
         containersGroup.add(container);
         container.cursor = 'pointer';
         container.on('click', ({ target }) => {
-          app.outlinePass.selectedObjects = [target]
-          app.outlinePass.visibleEdgeColor = new Color('#ff9900');
+          setOutline(target, new Color('#ff9900'));
+          createContainerMarker(target);
         });
-
       }
     }
   }
@@ -54,4 +56,37 @@ export async function createContainers () {
   );
 
   return containersGroup;
+}
+
+/** 创建集装箱 marker */
+function createContainerMarker (target: Object3D) {
+  const group = new Group();
+  const markerDom = document.createElement("div");
+  const containerInfo = createApp(
+    ContainerInfo,
+    {
+      info: {
+        nodeName: 66,
+        row: 10,
+        tier: 10,
+        bayNo: 66,
+        message: 'asdasd'
+      }
+    }
+  );
+  containerInfo.mount(markerDom);
+  const marker = new CSS2DObject(markerDom);
+  marker.name = `containerMarker`;
+  let x = target.position.x;
+  let y = target.position.y;
+  let z = target.position.z;
+
+  marker.position.set(
+    x,
+    y,
+    z
+  );
+  group.add(marker);
+  group.remove()
+  target.add(marker);
 }

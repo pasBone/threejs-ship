@@ -4,9 +4,9 @@ import { Interaction } from '@/vendor/three.interaction';
 import Stats from 'three/examples/jsm/libs/stats.module';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
+import { Outline } from "./OutlinePass";
+import { ObjectEvents } from "./ObjectEvents";
+
 export default class Entry {
 
   /** 场景 */
@@ -18,8 +18,8 @@ export default class Entry {
   /** 渲染器 */
   renderer: WebGLRenderer;
 
-  /** 外边框 */
-  outlinePass: OutlinePass;
+  /** 外边框效果管理器 */
+  outline: Outline
 
   constructor(dom: HTMLElement) {
     // 创建场景
@@ -54,21 +54,11 @@ export default class Entry {
 
     // 初始化事件管理器
     new Interaction(renderer, scene, camera);
+    // new ObjectEvents(renderer, scene, camera)
 
-    //  初始化 outlinePass
-    const composer = new EffectComposer( renderer );
-
-    var renderPass = new RenderPass( scene, camera );
-    composer.addPass( renderPass );
-
-    const outlinePass = new OutlinePass(
-      new Vector2(window.innerWidth, window.innerHeight),
-      scene,
-      camera
-    );
-    composer.addPass( outlinePass );
-
-    this.outlinePass = outlinePass;
+    // 初始化边框管理器
+    const outline  = new Outline(renderer, scene, camera);
+    this.outline = outline;
 
     this.renderer = renderer;
     this.camera = camera;
@@ -87,7 +77,7 @@ export default class Entry {
       orbitControls.update();
       renderer.render(scene, camera);
       css2DRenderer.render(scene, camera);
-      composer.render();
+      outline.composer.render();
       stats.update();
       requestAnimationFrame(renderFrame);
     })();

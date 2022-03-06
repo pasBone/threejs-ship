@@ -1,24 +1,34 @@
 import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import Entry from ".";
-import { Vector2 } from "three";
+import { Camera, Color, Scene, Vector2, WebGLRenderer } from "three";
+import { Object3D } from "three";
 
-class Outline {
-  constructor(app: Entry) {
-    //  初始化 outlinePass
-    const composer = new EffectComposer(app.renderer);
+export class Outline {
 
-    const renderPass = new RenderPass(app.scene, app.camera);
+  outlinePass: OutlinePass;
+
+  composer: EffectComposer;
+
+  constructor(renderer: WebGLRenderer, scene: Scene, camera: Camera) {
+    const composer = new EffectComposer(renderer);
+    const renderPass = new RenderPass(scene, camera);
     composer.addPass(renderPass);
 
     const outlinePass = new OutlinePass(
       new Vector2(window.innerWidth, window.innerHeight),
-      app.scene,
-      app.camera
+      scene,
+      camera
     );
     composer.addPass(outlinePass);
+    this.outlinePass = outlinePass;
+    this.composer = composer;
+  }
 
-    return outlinePass;
+  /** 设置对象 outLine */
+  setOutline (object: Object3D, color: Color) {
+    this.outlinePass.selectedObjects = [object];
+    this.outlinePass.visibleEdgeColor = color;
   }
 }
+

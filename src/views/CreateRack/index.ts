@@ -4,7 +4,7 @@ import { app } from "@/App";
 import { getCenter, getSize } from "@/utils/three.utils";
 import { blueContainer, rack } from "@/views/LoadModel";
 import { CONTAINER_SPACEING_Z_EVEN, CONTAINER_SPACEING_Z_ODD } from "@/const";
-import BayInfo from "@/views/Ui/bayInfo.vue";
+import BayInfo from "@/views/Ui/bayInfo/index.vue";
 
 export async function createRacks () {
 
@@ -68,7 +68,6 @@ export async function createRacks () {
 }
 
 export function createBaysMarker () {
-
   // bayMarker组
   const markersGroup = new Group();
   markersGroup.name = "markersGroup";
